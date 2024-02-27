@@ -15,8 +15,12 @@ export function AddThoughtForm(props) {
       text: text,
       expiresAt: getNewExpirationTime(),
     }
-    props.addThought(thought);
-    setText('');
+    
+    // Just add a thought if the user type something
+    if(text.length > 0){
+      props.addThought(thought);
+      setText('');
+    }
   };
 
   return (
