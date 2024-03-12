@@ -21,3 +21,10 @@ it("Should have header text Passing Thoughts", () => {
   const header = screen.getByText('Passing Thoughts');
   expect(header).toHaveTextContent('Passing Thoughts');
 });
+
+it("Should have button enabled", () => {
+  render(<Thought thought={{ text: "Hello" }} removeThought={() => {}} />);
+  // Test status of button here
+  const button = screen.getByRole('button');
+  expect(button).toBeEnabled();
+});
