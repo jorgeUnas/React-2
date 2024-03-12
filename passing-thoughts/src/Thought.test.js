@@ -16,9 +16,9 @@ it("Displays the Thought component", () => {
 });
 
 it("Should have header text Passing Thoughts", () => {
-  render(<App />);
   // Test App header text here
-  const header = screen.getByText('Passing Thoughts');
+  render(<App />);
+  const header = screen.queryByText('Passing Thoughts');
   expect(header).toHaveTextContent('Passing Thoughts');
 });
 
@@ -27,4 +27,12 @@ it("Should have button enabled", () => {
   // Test status of button here
   const button = screen.getByRole('button');
   expect(button).toBeEnabled();
+});
+
+it('"Oreos are delicious" should not appear', () => {
+  render(<App />);
+  // Add testing logic here
+  const emptyThought = screen.queryByText('Oreos are delicious');
+  expect(emptyThought).toBeNull();
+  
 });
