@@ -3,7 +3,7 @@ import "regenerator-runtime/runtime";
 import React from "react";
 import { Thought } from "./Thought.js";
 import { AddThoughtForm } from "./AddThoughtForm.js";
-import { App } from "./App.js";
+import App from "./App.js";
 import { waitFor, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
@@ -71,4 +71,20 @@ it("Clicking the x button should remove a thought", async () => {
     "This is a place for your passing thoughts."
   );
   expect(removedThought).toBeNull();
+});
+
+// miming an user typing and submitting a new thought
+
+it("Should add a new thought", () => {
+  render(<Add />);
+  // Grab the text box and the submit button.
+  const input = screen.getByRole("textbox");
+  const submit = screen.getByText('Add');
+
+  // TODO: Add testing logic to simulate user interactions here
+  userEvent.type(input, 'Did I forget my keys?');
+  userEvent.click(submit); 
+  // Assert that the thought appears
+  const thought = screen.getByText("Did I forget my keys?");
+  expect(thought).toBeInTheDocument();
 });
